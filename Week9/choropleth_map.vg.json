@@ -4,7 +4,7 @@
     "width": 800,
     "height": 600,
     "data": {
-      "url": "https://raw.githubusercontent.com/jtan0227/3179-assignment2/main/map.topojson",
+      "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/map.topojson",
       "format": {
             "type": "topojson",
             "feature": "STE_2021_AUST_GDA2020"
@@ -14,7 +14,7 @@
         "lookup": "properties.STE_NAME21",
         "from": {
           "data": {
-            "url": "https://raw.githubusercontent.com/jtan0227/3179-assignment2/main/crash_map.csv"
+            "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/crash_map.csv"
           },
           "key": "state_name",
           "fields": ["no_of_cases","population"]
