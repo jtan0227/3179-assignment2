@@ -1,0 +1,27 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title":"Death distribution for gender and age group in 2021",
+    "data": { "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/age_gender_bar.csv"},
+    "transform": [
+      {"filter": "datum.Year == 2021"},
+      {"calculate": "datum.Gender == 2 ? 'Female' : 'Male'", "as": "gender"}
+    ],
+    "width": {"step": 17},
+    "mark": "bar",
+    "encoding": {
+      "column": {"field": "Gender","title":null},
+      "y": {
+        "aggregate": "sum", "field": "Fatalities",
+        "title": "Total death in each age group"
+      },
+      "x": {"field": "Age_Group","title":"Age group"},
+      "color": {
+        "field": "Gender",
+        "scale": {"range": ["#675193", "#ca8861"]}},
+        "tooltip": [
+          {"field": "Age_Group", "type": "nominal","title":"Age group"},
+          {"aggregate": "sum", "field": "Fatalities","title":"Total death", "type": "quantitative"}]
+      
+    }
+  }
+  
