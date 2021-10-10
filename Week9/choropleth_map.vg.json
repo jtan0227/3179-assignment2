@@ -1,8 +1,8 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Crush cases per 10000 population in Australia ",
-    "width": 800,
-    "height": 600,
+   "width": 600,
+  "height":300,
     "data": {
       "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/map.topojson",
       "format": {
