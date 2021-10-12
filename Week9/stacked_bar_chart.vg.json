@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/ardd_fatalitie.csv"
+  },
+  "width": 350,
+  "selection": {
+    "age_group_highlight": {
+      "type": "multi",
+      "fields": ["Age Group"],
+      "bind": "legend"
+    }
+  },
+  "mark": {"type": "bar", "stroke": "white"},
+  "encoding": {
+    "x": {"field": "Year", "type": "ordinal", "axis": {"title": "year"}},
+    "y": {"aggregate": "count", "type": "quantitative"},
+    "color": {"field": "Age Group", "type": "nominal","scale": {
+ "domain": [
+         "0_to_16",
+          "17_to_25",
+          "26_to_39",
+          "40_to_64",
+          "65_to_74",
+          "75_or_older"
+ ],
+ "range": [
+ "#FEE227",
+ "#808080",
+ "#808080",
+ "#AEF359",
+ "#808080",
+ "#808080"
+ ]
+ }},
+    "opacity": {
+      "condition": {"selection": "age_group_highlight", "value": 0.9},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "Age Group", "type": "nominal"},
+      {"field": "Year", "type": "ordinal", "format": ","},
+      {
+        "aggregate": "count",
+        "type": "quantitative",
+        "format": ",",
+        "title": "Total crashes"
+      }
+    ]
+  }
+}
