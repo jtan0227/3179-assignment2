@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 450,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/pie_chart.csv"
+  },
+  "params": [
+    {
+      "name": "user_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Driver",
+          "Passenger",
+          "Pedestrian",
+          "Motorcycle_rider",
+          "Other"
+        ],
+        "labels": [
+          "Show All",
+          "Driver",
+          "Passenger",
+          "Pedestrian",
+          "Motorcycle_rider",
+          "Other"
+        ],
+        "name": "User Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "user_selection == null || datum.User == user_selection"},
+    {"calculate": "datum.Cases/52650  ", "as": "Percent Of Total"}
+  ],
+  "encoding": {
+    "theta": {
+      "field": "Cases",
+      "type": "quantitative",
+      "stack": true,
+      "sort": "color"
+    },
+    "color": {
+      "field": "User",
+      "type": "nominal",
+"scale": {
+ "domain": [
+         "Driver",
+          "Passenger",
+          "Pedestrian",
+          "Motorcycle_rider",
+          "Other"
+ ],
+ "range": [
+ "#984ea3",
+ "#808080",
+ "#808080",
+ "#808080",
+ "#FFC0CB"
+ ]
+ },
+      "sort": ["Driver", "Passenger", "Pedestrian", "Motorcycle_rider", "Other"]
+    },
+    "tooltip": [
+      {"field": "User", "type": "nominal"},
+      {"field": "Cases", "type": "quantitative"},
+      {"field": "Percent Of Total", "type": "quantitative", "format": "0.1%"}
+    ]
+  },
+  "layer": [
+    {"mark": {"type": "arc", "innerRadius": 50, "stroke": "white"}},
+    {
+      "mark": {"type": "text", "radius": 120},
+      "encoding": {
+        "text": {
+          "field": "Percent Of Total",
+          "type": "quantitative",
+          "format": "0.1%"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "window": [{"op": "rank", "as": "ranking"}],
+          "sort": [{"field": "Cases", "order": "descending"}]
+        },
+        {"filter": "datum.ranking == 3"},
+        {
+          "calculate": "'Driver has the most cases: ' + datum['Cases']",
+          "as": "text_annotation"
+        }
+      ],
+      "mark": {"type": "text", "align": "left", "dx": 100},
+      "encoding": {"text": {"field": "text_annotation"}}
+    }
+  ]
+}
