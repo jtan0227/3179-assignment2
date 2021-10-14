@@ -1,19 +1,15 @@
-/* #choropleth_map {
-	top:100px;
-	bottom: 100px; 
-	left: 300px;
-	right: 100px;
-	/*height: 1000px;
-	width: 800px;*/
-
+    
+	
 	.body {
 		font-family: 'Source Sans Pro', sans-serif;
 	}
 	
 	h1 {
 		font-weight: 900;
+		font-size: x-large;
 		text-emphasis:center;
 		text-align: center;
+		color:black;
 	}
 	
 	body {
@@ -28,12 +24,13 @@
 		padding-top: 35px;
 	}
 	.strokeme {
-		color:purple;
+		color:#984ea3;
 		border: 1px solid black ;
 		margin-bottom: 20px;
 		text-align: center;
-		font-size: 25px;
+		font-size: 30px;
 		font-weight: 600;
+
 
 		
 		
@@ -47,6 +44,7 @@
 	.description h2,
 	h1 {
 		margin-top: 0px;
+		font-size: 20px;
 	}
 	
 	.description-right {
@@ -63,6 +61,6 @@
 
 	
 	.small-font {
-		font-size: 14px;
+		font-size: 5px;
 	}
 	
