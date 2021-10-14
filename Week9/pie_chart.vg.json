@@ -1,6 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 450,
+  "height": 180,
   "data": {
     "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/pie_chart.csv"
   },
@@ -41,24 +42,19 @@
       "sort": "color"
     },
     "color": {
+       "legend": {"orient": "top", "title": "User group"},
       "field": "User",
       "type": "nominal",
-"scale": {
- "domain": [
-         "Driver",
+      "scale": {
+        "domain": [
+          "Driver",
           "Passenger",
           "Pedestrian",
           "Motorcycle_rider",
           "Other"
- ],
- "range": [
- "#984ea3",
- "#808080",
- "#808080",
- "#808080",
- "#FFC0CB"
- ]
- },
+        ],
+        "range": ["#984ea3", "#D3D3D3", "#FFC0CB", "#D3D3D3", "#D3D3D3"]
+      },
       "sort": ["Driver", "Passenger", "Pedestrian", "Motorcycle_rider", "Other"]
     },
     "tooltip": [
@@ -68,9 +64,9 @@
     ]
   },
   "layer": [
-    {"mark": {"type": "arc", "innerRadius": 50, "stroke": "white"}},
+    {"mark": {"type": "arc", "innerRadius": 45, "stroke": "white"}},
     {
-      "mark": {"type": "text", "radius": 120},
+      "mark": {"type": "text", "radius": 108},
       "encoding": {
         "text": {
           "field": "Percent Of Total",
@@ -87,12 +83,13 @@
         },
         {"filter": "datum.ranking == 3"},
         {
-          "calculate": "'Driver has the most cases: ' + datum['Cases']",
+          "calculate": "'Driver has most cases: ' + datum['Cases']",
           "as": "text_annotation"
         }
       ],
-      "mark": {"type": "text", "align": "left", "dx": 100},
+      "mark": {"type": "text", "align": "left", "dx": 90},
       "encoding": {"text": {"field": "text_annotation"}}
     }
-  ]
+  ],
+  "config": {"style": {"cell": {"stroke": "transparent"}}}
 }
