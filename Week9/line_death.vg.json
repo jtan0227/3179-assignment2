@@ -1,127 +1,96 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {
-      "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/line_chart.csv"
-    },
-    "transform": [
-      {
-        "calculate": "datum.Fatalities/datum.Cases *1000",
-        "as": "Death per 1000 Cases"
-      }
-    ],
-    "width": 400,
-    "height": 300,
-    "layer": [
-      {
-        "encoding": {
-          "x": {"field": "Month", "type": "nominal"},
-          "y": {
-            "field": "Death per 1000 Cases",
-            "type": "quantitative",
-            "scale": {"domain": [60, 150]}
-          },
-          "color": {"field": "State", "type": "nominal"}
-        },
-        "layer": [
-          {"mark": "line"},
-          {
-            "params": [
-              {
-                "name": "label",
-                "select": {
-                  "type": "point",
-                  "encodings": ["x"],
-                  "nearest": true,
-                  "on": "mouseover"
-                }
-              }
-            ],
-            "mark": "point",
-            "encoding": {
-              "opacity": {
-                "condition": {"param": "label", "empty": false, "value": 1},
-                "value": 0
-              }
-            }
-          }
-        ]
-      },
-      {
-        "transform": [{"filter": {"param": "label", "empty": false}}],
-        "layer": [
-          {
-            "mark": {"type": "rule", "color": "gray"},
-            "encoding": {
-              "x": {
-                "type": "nominal",
-                "field": "Month",
-                "aggregate": "min",
-                "title": "Date"
-              }
-            }
-          },
-          {
-            "encoding": {
-              "text": {
-                "type": "quantitative",
-                "field": "Death per 1000 Cases",
-                "format": ".2f"
-              },
-              "x": {"type": "nominal", "field": "Month"},
-              "y": {"type": "quantitative", "field": "Death per 1000 Cases"}, "color": {
-        "field": "State",
-        "type": "nominal",
-        "scale": {
-          "domain": [
-            "ACT",
-            "TAS",
-            "WA",
-            "SA",
-            "QLD",
-            "VIC",
-            "NSW",
-            "NT"
-          ],
-          "range": [
-            "#D3D3D3",
-            "#D3D3D3",
-            "#D3D3D3",
-            "#D3D3D3",
-             "#D3D3D3",
-            "#241571",
-             "#D3D3D3",
-             "#D4AF37"
-          ]
-        }
-      },
-              "tooltip": [
-        {"field": "State", "type": "nominal"},
-        {
-          "field": "Death per 1000 Cases",
-          "type": "quantitative",
-          "format": ".2f"
-        }
-        
-      ]
-            },
-            "layer": [
-              {
-                "mark": {
-                  "type": "text",
-                  "stroke": "white",
-                  "strokeWidth": 2,
-                  "align": "left",
-                  "dx": 5,
-                  "dy": -5
-                }
-              },
-              {
-                "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5},
-                "encoding": {"color": {"type": "nominal", "field": "State"}}
-              }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/line_chart5.csv"
+  },
+  "width": 400,
+  "height": 300,
+  "transform": [
+    {
+      "calculate": "datum.Fatalities/datum.Cases *1000",
+      "as": "Death per 1000 Cases"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "timeUnit": "month",
+      "field": "Month",
+      "type": "temporal",
+      "title": "Month"
+    }
+  },
+  "layer": [
+    {
+      "encoding": {
+        "color": {
+           "legend": {"orient": "top", "title": "State"},
+          "field": "State",
+          "type": "nominal",
+          "scale": {
+            "domain": ["ACT", "TAS", "WA", "SA", "QLD", "VIC", "NSW", "NT"],
+            "range": [
+              "#D3D3D3",
+              "#D3D3D3",
+              "#D3D3D3",
+              "#D3D3D3",
+              "#D3D3D3",
+              "#FEE227",
+              "#D3D3D3",
+              "#984ea3"
             ]
           }
+        },
+        "y": {
+          "field": "Death per 1000 Cases",
+          "type": "quantitative",
+          "scale": {"domain": [60, 150]}
+        }
+      },
+      "layer": [
+        {"mark": "line"},
+        {
+          "transform": [{"filter": {"param": "hover", "empty": false}}],
+          "mark": "point"
+        }
+      ]
+    },
+    {
+      "transform": [
+        {
+          "pivot": "State",
+          "value": "Death per 1000 Cases",
+          "groupby": ["Month"]
+        }
+      ],
+      "mark": "rule",
+      "encoding": {
+        "opacity": {
+          "condition": {"value": 0.3, "param": "hover", "empty": false},
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "ACT", "type": "quantitative", "format": ".2f"},
+          {"field": "NSW", "type": "quantitative", "format": ".2f"},
+          {"field": "NT", "type": "quantitative", "format": ".2f"},
+          {"field": "QLD", "type": "quantitative", "format": ".2f"},
+          {"field": "SA", "type": "quantitative", "format": ".2f"},
+          {"field": "TAS", "type": "quantitative", "format": ".2f"},
+          {"field": "VIC", "type": "quantitative", "format": ".2f"},
+          {"field": "WA", "type": "quantitative", "format": ".2f"}
         ]
-      }
-    ]
-  }
+      },
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "fields": ["Month"],
+            "nearest": true,
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ]
+    }
+  ]
+}
