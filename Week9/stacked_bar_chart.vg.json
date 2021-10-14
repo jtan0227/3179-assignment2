@@ -11,28 +11,33 @@
       "bind": "legend"
     }
   },
-  "mark": {"type": "bar", "stroke": "white"},
+  "mark": {"type": "area", "stroke": "white"},
   "encoding": {
     "x": {"field": "Year", "type": "ordinal", "axis": {"title": "year"}},
     "y": {"aggregate": "count", "type": "quantitative"},
-    "color": {"field": "Age Group", "type": "nominal","scale": {
- "domain": [
-         "0_to_16",
+    "color": {
+       "legend": {"orient": "top", "title": "Age Group"},
+      "field": "Age Group",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "0_to_16",
           "17_to_25",
           "26_to_39",
           "40_to_64",
           "65_to_74",
           "75_or_older"
- ],
- "range": [
- "#FEE227",
- "#808080",
- "#808080",
- "#AEF359",
- "#808080",
- "#808080"
- ]
- }},
+        ],
+        "range": [
+          "#984ea3",
+          "#D3D3D3",
+          "#D3D3D3",
+          "#AEF359",
+          "#D3D3D3",
+          "#D3D3D3"
+        ]
+      }
+    },
     "opacity": {
       "condition": {"selection": "age_group_highlight", "value": 0.9},
       "value": 0.2
