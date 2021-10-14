@@ -1,30 +1,34 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/Casualties.csv"},
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/Casualties.csv"
+  },
+  "width": 400,
+  "params": [{"name": "grid", "select": "interval", "bind": "scales"}],
+  "mark": {"type": "circle", "color": "#984ea3"},
+  "encoding": {
+
+    "x": {
+      "field": "minor_injuries",
+      "type": "quantitative",
+      "bin": {"maxbins": 50},
+      "title": "Minor injuries "
+    },
+    "y": {
+      "field": "casualties",
+      "type": "quantitative",
+      "bin": {"maxbins": 30},
+      "title": "casualties"
+    },
+    "size": {"aggregate": "count", "legend": {"orient": "top", "title": "Count of Records"}},
     
-    "width":400,
-    "params": [{
-      "name": "grid",
-      "select": "interval",
-      "bind": "scales"
-    }],
-    "mark": "circle",
-    "encoding": {
-      "x": {
+    "tooltip": [
+      {"field": "casualties", "type": "quantitative", "title": "casualties"},
+      {
         "field": "minor_injuries",
         "type": "quantitative",
-        "title":"Minor injuries rate",
-        "scale": {"type": "linear", "domain": [-5,50 ]}
-      },
-      "y": {
-        "field": "serious_injuries",
-        "type": "quantitative",
-        "title":"Serious injuries rate",
-        "scale": {"type": "linear", "domain": [-5, 30]}
-      },
-      "size": {"field": "serious_injuries", "title":"Serious injuries rate","type": "quantitative"},
-      "tooltip": [
-          {"field": "serious_injuries", "type": "quantitative","title":"Serious injuries rate"},
-           {"field": "minor_injuries", "type": "quantitative","title":"Minor injuries rate"}]
-    }
+        "title": "Minor injuries"
+      }
+    ]
   }
+}
