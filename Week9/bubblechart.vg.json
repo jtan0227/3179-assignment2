@@ -1,0 +1,121 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/bubble_chart.csv"
+  },
+  "params": [
+    {
+      "name": "state_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "ACT",
+          "TAS",
+          "WA",
+          "SA",
+          "QLD",
+          "VIC",
+          "NSW",
+           "NT"
+        ],
+        "labels": [
+          "Show All",
+         "Australian Capital Territory",
+          "Tasmania",
+          "Western Australia",
+          "South Australia",
+          "Queensland",
+          "Victoria",
+          "New South Wales",
+              "Northern Territory"
+        ],
+        "name": "State Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "state_selection == null || datum.State ==state_selection"},
+    {
+      "calculate": "datum.Single/datum.Area * 10000",
+      "as": "Single crashes per 10,000 Area"
+    },
+    {
+      "calculate": "datum.Multiple/datum.Area * 10000",
+      "as": "Multiple crashes per 10,000 Area"
+    }
+  ],
+  "selection": {
+    "state_highlight": {"type": "multi", "fields": ["State"], "bind": "legend"}
+  },
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": "Single",
+      "type": "quantitative",
+      "title": "Single Cases",
+      "axis": {"tickCount": 5},
+      "scale": {"type": "sqrt", "domain": [0, 10000]}
+    },
+    "y": {
+      "field": "speed",
+      "type": "quantitative",
+      "axis": {"tickCount": 5},
+      "scale": {"type": "linear", "domain": [78.8, 82]}
+    },
+    "color": {
+      "legend": {"orient": "top", "title": "State"},
+      "field": "State",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "ACT",
+          "TAS",
+          "WA",
+          "SA",
+          "QLD",
+          "VIC",
+          "NSW",
+          "NT"
+        ],
+        "range": [
+          "#000080",
+          "#a9a9a9",
+          "#a9a9a9",
+          "#a9a9a9",
+          "#a9a9a9",
+          "#FEE227",
+          "#6A287E",
+          "#a9a9a9"
+        ]
+      }
+    },
+    "opacity": {
+      "condition": {"selection": "state_highlight", "value": 0.6},
+      "value": 0.2
+    },
+    "size": {
+            "legend": {"orient": "bottom", "title": "Area","format": ".1s"},
+      "field": "Area",
+    
+      "type": "quantitative",
+      "scale": {
+        
+        "type": "threshold",
+        "domain": [100000, 1000000, 1500000],
+        "range": [60, 200, 400, 600, 950]
+      }
+    },
+    "tooltip": [
+      {"field": "State", "type": "nominal"},
+      {
+        "field": "Single crashes per 10,000 Area",
+        "type": "quantitative",
+        "format": ".2f"
+      },
+      {"field": "speed", "type": "quantitative", "format": ".2f"}
+    ]
+  }
+}
+
