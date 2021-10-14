@@ -1,29 +1,70 @@
-
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    
-
-    "data": { "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/age_gender_bar.csv"},
-    "transform": [
-      {"filter": "datum.Year == 2021"},
-      {"calculate": "datum.Gender == 2 ? 'Female' : 'Male'", "as": "gender"}
-    ],
-    "width": {"step": 35},
-    "mark": "bar",
-    "encoding": {
-      "column": {"field": "Gender","title":null},
-      "y": {
-        "aggregate": "sum", "field": "Fatalities",
-        "title": "Total death in each age group"
-      },
-      "x": {"field": "Age_Group","title":"Age group"},
-      "color": {
-        "field": "Gender",
-        "scale": {"range": ["#675193", "#ca8861"]}},
-        "tooltip": [
-          {"field": "Age_Group", "type": "nominal","title":"Age group"},
-          {"aggregate": "sum", "field": "Fatalities","title":"Total death", "type": "quantitative"}]
-      
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/age_gender_bar.csv"
+  },
+  "transform": [
+    {"filter": "datum.Year == 2021"},
+    {"calculate": "datum.Gender == 2 ? 'Female' : 'Male'", "as": "gender"}
+  ],
+  "spacing": 0,
+  "hconcat": [
+    {
+      "transform": [{"filter": {"field": "Gender", "equal": "Female"}}],
+      "title": "Female",
+      "mark": "bar",
+      "encoding": {
+        "y": {"field": "Age_Group", "axis": null, "sort": "descending"},
+        "x": {
+          "aggregate": "sum",
+          "field": "Fatalities",
+          "title": "Total deaths in each age group",
+          "axis": {"format": "s"},
+          "sort": "descending",
+          "scale": {"type": "linear", "domain": [0, 230]}
+        },
+        "color": {
+          "field": "Gender",
+          "scale": {"range": ["#984ea3", "#ca8861"]},
+          "legend": null
+        }
+      }
+    },
+    {
+      "width": 20,
+      "view": {"stroke": null},
+      "mark": {"type": "text", "align": "center"},
+      "encoding": {
+        "y": {
+          "field": "Age_Group",
+          "type": "nominal",
+          "axis": null,
+          "sort": "descending"
+        },
+        "text": {"field": "Age_Group", "type": "nominal"}
+      }
+    },
+    {
+      "transform": [{"filter": {"field": "Gender", "equal": "Male"}}],
+      "title": "Male",
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "Age_Group",
+          "title": null,
+          "axis": null,
+          "sort": "descending"
+        },
+        "x": {
+          "aggregate": "sum",
+          "field": "Fatalities",
+          "title": "Total deaths in each age group",
+          "axis": {"format": "s"},
+          "scale": {"type": "linear", "domain": [0, 250]}
+        },
+        "color": {"field": "Gender", "legend": null}
+      }
     }
-  }
-  
+  ],
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}}
+}
