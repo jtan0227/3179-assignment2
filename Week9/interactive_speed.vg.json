@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/Speed_brush.csv"
+  },
+  "vconcat": [
+    {
+      "width": 400,
+      "mark": {"type": "area", "color": "#984ea3"},
+      "encoding": {
+        "x": {
+          "field": "Date",
+          "type": "temporal",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"title": ""}
+        },
+        "y": {
+          "field": "Average_speed",
+          "type": "quantitative",
+          "scale": {"domain": [70, 92]}
+        },
+        "tooltip": [
+          {"field": "Date", "type": "nominal"},
+          {"field": "Average_speed", "type": "quantitative"}
+        ]
+      }
+    },
+    {
+      "width": 400,
+      "height": 80,
+      "mark": {"type": "line", "color": "#984ea3"},
+      "params": [
+        {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+      ],
+      "encoding": {
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {
+          "field": "Average_speed",
+          "type": "quantitative",
+          "axis": {"tickCount": 3, "grid": false},
+          "scale": {"domain": [70, 92]}
+        },
+        "tooltip": [
+          {"field": "Date", "type": "nominal"},
+          {"field": "Average_speed", "type": "quantitative"}
+        ]
+      }
+    }
+  ]
+}
