@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "projection": {"type": "equirectangular"},
-  "width": 400,
+  "width": 550,
   "height": 250,
   "params": [
     {
@@ -48,7 +48,7 @@
       "scale": {
         "type": "threshold",
         "domain": [200, 300, 380, 1000],
-        "range": ["#fdbe85", "#fd8d3c", "#e45500", "#b34200", "#800000"]
+        "range": ["#CEA3FF", "#B289f3", "#8c6bb1", "#88419d", "#6e016b"]
       }
     },
     "tooltip": [
