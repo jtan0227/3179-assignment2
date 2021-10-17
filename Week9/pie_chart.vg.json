@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 450,
+  "width": 500,
   "height": 180,
   "data": {
     "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/pie_chart.csv"
@@ -87,7 +87,7 @@
           "as": "text_annotation"
         }
       ],
-      "mark": {"type": "text", "align": "left", "dx": 90},
+      "mark": {"type": "text", "align": "left", "dx": 100},
       "encoding": {"text": {"field": "text_annotation"}}
     }
   ],
