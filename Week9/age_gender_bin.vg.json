@@ -10,6 +10,7 @@
   "spacing": 0,
   "hconcat": [
     {
+      "width": 250,
       "transform": [{"filter": {"field": "Gender", "equal": "Female"}}],
       "title": "Female",
       "mark": "bar",
@@ -27,7 +28,12 @@
           "field": "Gender",
           "scale": {"range": ["#984ea3", "#ca8861"]},
           "legend": null
-        }
+        },
+        "tooltip": [
+      {"field": "Age-Group", "type": "nominal","title":"Age group"},
+      {"aggregate": "sum",
+          "field": "Fatalities",
+          "title": "Total deaths in each age group","type": "quantitative"}]
       }
     },
     {
@@ -62,7 +68,12 @@
           "axis": {"format": "s"},
           "scale": {"type": "linear", "domain": [0, 250]}
         },
-        "color": {"field": "Gender", "legend": null}
+        "color": {"field": "Gender", "legend": null},
+        "tooltip": [
+      {"field": "Age-Group", "type": "nominal","title":"Age group"},
+      {"aggregate": "sum",
+          "field": "Fatalities",
+          "title": "Total deaths in each age group","type": "quantitative"}]
       }
     }
   ],
