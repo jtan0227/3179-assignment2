@@ -3,7 +3,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/Casualties.csv"
   },
-  "width": 400,
+  "width": 500,
   "params": [{"name": "grid", "select": "interval", "bind": "scales"}],
   "mark": {"type": "circle", "color": "#984ea3"},
   "encoding": {
