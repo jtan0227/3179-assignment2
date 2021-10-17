@@ -3,7 +3,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/jtan0227/web-visualisation-assignment2/main/Week9/ardd_fatalitie.csv"
   },
-  "width": 350,
+  "width": 450,
   "selection": {
     "age_group_highlight": {
       "type": "multi",
