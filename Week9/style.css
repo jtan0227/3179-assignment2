@@ -10,6 +10,7 @@
 		text-emphasis:center;
 		text-align: center;
 		color:black;
+		font-family: 'Times New Roman', serif;
 	}
 	
 	body {
@@ -30,6 +31,7 @@
 		text-align: center;
 		font-size: 30px;
 		font-weight: 600;
+		font-family: 'Times New Roman', serif;
 
 
 		
@@ -43,7 +45,7 @@
 	
 	.description h2,
 	h1 {
-		margin-top: 0px;
+		margin-top: 10px;
 		font-size: 20px;
 	}
 	
@@ -64,3 +66,31 @@
 		font-size: 5px;
 	}
 	
+
+	#vis1 {margin-left: 20px;
+		margin-right: 5px;
+	}
+
+	#vis2 {margin-left: 20px;
+		margin-right: 5px;}
+
+	#vis3 {margin-left: 20px;
+		margin-right: 5px;}
+
+	#vis4 {margin-left: 20px;
+		margin-right: 5px;}
+
+	#vis5 {margin-left: 20px;
+		margin-right: 5px;}
+
+	#vis6 {margin-left: 20px;
+		margin-right: 5px;}
+
+	#vis7 {margin-left: 20px;
+		margin-right: 5px;}
+
+	#vis8 {margin-left: 20px;
+		margin-right: 5px;}
+
+
+
